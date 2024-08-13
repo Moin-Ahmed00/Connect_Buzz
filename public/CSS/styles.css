@@ -1,0 +1,22 @@
+.bg-default-image {
+  background-image: url("../images/register.jpg");
+  object-fit: contain;
+  height: 300px;
+  /* text-shadow: 2px 2px 8px #000; */
+}
+
+.active{
+  background-color: lightslategray !important;
+}
+
+.homeCSS{
+  background-image: url("../images/register.jpg");
+  padding: 100px, 0px, 75px, 0px;
+  min-height: 800px;
+  min-width: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+}
