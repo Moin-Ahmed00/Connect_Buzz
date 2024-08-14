@@ -15,12 +15,12 @@ const Search = () => {
     // console.log(`Search ${query} from the db`);
     try {
       const { data } = await axios.get(`/search-user/${query}`);
-      //   console.log("User search response from the db", data);
       if (data.length === 0) {
         toast.error("No user Found");
       } else {
-        setResult(data);
+        setResult([...data]);
       }
+      // console.log("User search response from the db", data);
     } catch (error) {
       console.log(error);
     }
@@ -90,15 +90,11 @@ const Search = () => {
           </button>
         </form>
       </div>
-      {result &&
-        result.map((r) => (
           <People
-            key={r._id}
             people={result}
             handleFollow={handleFollow}
             handleUnfollow={handleUnfollow}
           />
-        ))}
     </>
   );
 };

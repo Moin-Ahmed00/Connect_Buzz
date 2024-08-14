@@ -9,7 +9,6 @@ import Link from "next/link";
 const People = ({ people, handleFollow, handleUnfollow }) => {
   const [state] = useContext(UserContext);
   const router = useRouter();
-
   return (
     <>
       {/* <pre>{JSON.stringify(people, null, 10)}</pre> */}
