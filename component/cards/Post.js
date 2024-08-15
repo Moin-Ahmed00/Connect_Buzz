@@ -22,12 +22,12 @@ const Post = ({
   return (
     <>
       {post && post.postedBy && (
-        <div key={post._id}>
+        <div className="shadow" key={post._id}>
           <div
-            className="card border-success mb-3"
+            className="card border-primary mb-3"
             style={{ maxWidth: "100%" }}
           >
-            <div className="card-header bg-transparent border-success d-flex align-items-center">
+            <div className="card-header bg-transparent border-primary d-flex align-items-center">
               {/* <Avatar size={40}>{post.postedBy.name[0]}</Avatar> */}
               {<Avatar size={50} src={imageUrl(post.postedBy)} />}
               <span className="m-3">{post.postedBy.name}</span>
@@ -70,15 +70,16 @@ const Post = ({
                     onClick={() => {
                       handleComment(post);
                     }}
-                    className="btn bi bi-chat-text d-flex gap-2 align-items-center"
+                    className="btn bi bi-chat-text d-flex gap-2 align-items-center text-danger"
                   >
-                    <Link
-                      className="text-decoration-none text-danger"
-                      href={`/post/${post._id}`}
-                    >
-                      {post.comments.length} Comments
-                    </Link>
+                    {post.comments.length}
                   </i>
+                  <Link
+                    className="text-decoration-none text-danger d-flex align-items-center text-center"
+                    href={`/post/${post._id}`}
+                  >
+                    Comments
+                  </Link>
                 </div>
                 {state &&
                   state.user &&

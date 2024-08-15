@@ -102,7 +102,7 @@ const UpdateProfile = () => {
             ) : uploading ? (
               <div className="spinner-border text-primary" role="status"></div>
             ) : (
-              <i className="bi bi-camera2 h4 p-1"></i>
+              <i className="btn bi bi-camera2 h4 p-1"></i>
             )}
             <input
               onChange={handleImage}

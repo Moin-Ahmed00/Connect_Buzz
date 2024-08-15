@@ -35,9 +35,9 @@ const index = ({ posts }) => {
       <meta property="og:site_name" content="Connect Buzz" />
       <meta
         property="og:image:secure_url"
-        content="https://www.connectbuzz.com/images/register.jpg"
+        content="https://connect-buzz.onrender.com/images/register.jpg"
       />
-      <meta property="og:url" content="https://www.connectbuzz.com" />
+      <meta property="og:url" content="https://connect-buzz.onrender.com" />
     </Head>
   );
 
@@ -53,13 +53,16 @@ const index = ({ posts }) => {
         <div className="row px-5 py-5">
           {collection &&
             collection.map((post) => (
-              <div key={post._id} className="col-8 offset-2">
+              <div key={post._id} className="col-8 offset-2 shadow">
                 <Link
                   className="text-decoration-none"
                   href={`/post/viewPost/${post._id}`}
                 >
-                  <PostPublic key={post._id} post={post} />
+                  <i className="bi bi-view-list h4 border-success mt-5 px-3 d-flex gap-2 align-items-center text-white">
+                    View Post
+                  </i>
                 </Link>
+                {<PostPublic key={post._id} post={post} />}
               </div>
             ))}
         </div>

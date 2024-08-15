@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../context";
 import React from "react";
 import renderHTML from "react-render-html";
@@ -10,8 +10,13 @@ import { Avatar } from "antd/dist/antd";
 const PostPublic = ({ post, commentCount = 10 }) => {
   const [state] = useContext(UserContext);
   const router = useRouter();
+
+  useEffect(()=>{
+    post && post.postedBy
+  },[post && post.postedBy])
+
   return (
-    <>
+    <div>
       {post && post.postedBy && (
         <div key={post._id}>
           <div
@@ -85,7 +90,7 @@ const PostPublic = ({ post, commentCount = 10 }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -31,7 +31,7 @@ const SinglePost = ({ post }) => {
   };
 
   return (
-    <>
+    <div>
       {head()}
       <div className="homeCSS container-fluid">
         <h1 className="display-1 fw-bold text-center text-white pt-5">
@@ -46,7 +46,7 @@ const SinglePost = ({ post }) => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
