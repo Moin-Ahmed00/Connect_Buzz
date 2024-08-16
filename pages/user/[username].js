@@ -36,7 +36,7 @@ const Username = () => {
     if (user.image) {
       return user.image.url;
     } else {
-      return "/images/avatar-1.png";
+      return "/images/avatar.png";
     }
   };
 
