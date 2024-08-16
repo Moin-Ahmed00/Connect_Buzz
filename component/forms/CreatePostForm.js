@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-const { Avatar } = require("antd");
+import { Avatar } from "antd/dist/antd";
 
 const CreatePostForm = ({
   content,

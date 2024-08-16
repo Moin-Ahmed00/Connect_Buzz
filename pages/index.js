@@ -6,9 +6,13 @@ import Head from "next/head";
 import Link from "next/link";
 import io from "socket.io-client";
 
-const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
-  reconnection: true,
-});
+const socket = io(
+  process.env.NEXT_PUBLIC_SOCKETIO,
+  { path: "/socket.io" },
+  {
+    reconnection: true,
+  }
+);
 
 const index = ({ posts }) => {
   const [state, setState] = useContext(UserContext);
@@ -19,6 +23,8 @@ const index = ({ posts }) => {
       setNewsFeed([newPost, ...posts]);
     });
   }, []);
+
+  const collection = newsFeed.length > 0 ? newsFeed : posts;
 
   const head = () => (
     <Head>
@@ -40,8 +46,6 @@ const index = ({ posts }) => {
       <meta property="og:url" content="https://connect-buzz.onrender.com" />
     </Head>
   );
-
-  const collection = newsFeed.length > 0 ? newsFeed : posts;
 
   return (
     <>

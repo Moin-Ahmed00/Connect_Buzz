@@ -90,11 +90,11 @@ const Search = () => {
           </button>
         </form>
       </div>
-          <People
+          {result && result.length > 0 && <People
             people={result}
             handleFollow={handleFollow}
             handleUnfollow={handleUnfollow}
-          />
+          />}
     </>
   );
 };

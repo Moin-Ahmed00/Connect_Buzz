@@ -14,9 +14,13 @@ import CommentForm from "../../component/forms/CommentForm";
 import Search from "../../component/Search";
 import io from "socket.io-client";
 
-const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
-  reconnection: true,
-});
+const socket = io(
+  process.env.NEXT_PUBLIC_SOCKETIO,
+  { path: "/socket.io" },
+  {
+    reconnection: true,
+  }
+);
 
 const dashboard = () => {
   const [state, setState] = useContext(UserContext);
