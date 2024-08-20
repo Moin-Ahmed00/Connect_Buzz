@@ -20,8 +20,19 @@ const index = ({ posts }) => {
 
   useEffect(() => {
     socket.on("new-post", (newPost) => {
-      setNewsFeed([newPost, ...posts]);
+      setNewsFeed((posts) => [newPost, ...posts]);
     });
+    if (posts.length === 0) {
+      const fetchPost = async () => {
+        try {
+          const { data } = await axios.get("/posts");
+          setNewsFeed(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchPost();
+    }
   }, []);
 
   const collection = newsFeed.length > 0 ? newsFeed : posts;
