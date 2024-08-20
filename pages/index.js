@@ -22,7 +22,7 @@ const index = ({ posts }) => {
     socket.on("new-post", (newPost) => {
       setNewsFeed([newPost, ...posts]);
     });
-    if (posts.length === 0) {
+    if (posts && posts.length < 0) {
       const fetchPost = async () => {
         try {
           const { data } = await axios.get("/posts");
