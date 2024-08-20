@@ -20,7 +20,7 @@ const index = ({ posts }) => {
 
   useEffect(() => {
     socket.on("new-post", (newPost) => {
-      setNewsFeed((posts) => [newPost, ...posts]);
+      setNewsFeed([newPost, ...posts]);
     });
     if (posts.length === 0) {
       const fetchPost = async () => {
