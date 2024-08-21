@@ -39,7 +39,8 @@ const login = () => {
         router.push("/user/dashboard");
       }
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error(err && err.response && err.response.data);
+      console.log(err);
       setLoading(false);
     }
   };
