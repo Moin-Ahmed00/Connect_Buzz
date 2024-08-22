@@ -14,6 +14,25 @@ const socket = io(
   }
 );
 
+export async function getServerSideProps() {
+  try {
+    const { data } = await axios.get(`/posts`);
+    // console.log(data);
+    return {
+      props: {
+        posts: data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
+}
+
 const index = ({ posts }) => {
   const [state, setState] = useContext(UserContext);
   const [newsFeed, setNewsFeed] = useState([]);
@@ -22,7 +41,7 @@ const index = ({ posts }) => {
     socket.on("new-post", (newPost) => {
       setNewsFeed([newPost, ...posts]);
     });
-    if (posts && posts.length < 0) {
+    if (posts && posts.length === 0) {
       const fetchPost = async () => {
         try {
           const { data } = await axios.get("/posts");
@@ -85,24 +104,5 @@ const index = ({ posts }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  try {
-    const { data } = await axios.get(`/posts`);
-    // console.log(data);
-    return {
-      props: {
-        posts: data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        posts: [],
-      },
-    };
-  }
-}
 
 export default index;

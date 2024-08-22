@@ -3,6 +3,25 @@ import PostPublic from "../../../component/cards/PostPublic";
 import Head from "next/head";
 import Link from "next/link";
 
+export async function getServerSideProps(ctx) {
+  try {
+    const { data } = await axios.get(`/post/${ctx.params._id}`);
+    // console.log(data);
+    return {
+      props: {
+        post: data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        post: [],
+      },
+    };
+  }
+}
+
 const SinglePost = ({ post }) => {
   const head = () => (
     <Head>
@@ -49,24 +68,5 @@ const SinglePost = ({ post }) => {
     </div>
   );
 };
-
-export async function getServerSideProps(ctx) {
-  try {
-    const { data } = await axios.get(`/post/${ctx.params._id}`);
-    // console.log(data);
-    return {
-      props: {
-        post: data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        post: [],
-      },
-    };
-  }
-}
 
 export default SinglePost;
