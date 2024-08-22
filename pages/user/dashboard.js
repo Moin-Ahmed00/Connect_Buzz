@@ -215,6 +215,20 @@ const dashboard = () => {
     }
   };
 
+  const removeComment = async (postId, comment) => {
+    try {
+      // console.log("remove Comment", postId, comment);
+      const { data } = axios.put("/remove-comment", {
+        comment,
+        postId,
+      });
+      newsFeed();
+      toast.success("Comment deleted");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <UserRoute>
       <div className="container-fluid">
@@ -224,7 +238,7 @@ const dashboard = () => {
           </div>
         </div>
         <div className="row py-5 d-flex">
-          <div className="col-4">
+          <div className="col-md-4 offset-md-0 col-sm-10 offset-sm-1 col-12 offset-0">
             <Search /> <br />
             {/* <pre>{JSON.stringify(people, null, 4)}</pre> */}
             <div className="d-flex justify-content-around w-100 pb-4">
@@ -245,9 +259,11 @@ const dashboard = () => {
                 </Link>
               )}
             </div>
-            <People people={people} handleFollow={handleFollow} />
+            <div className="d-none d-sm-block">
+              <People people={people} handleFollow={handleFollow} />
+            </div>
           </div>
-          <div className="col-8">
+          <div className="col-md-8 offset-md-0 col-sm-10 offset-sm-1 col-12 offset-0">
             {page < 2 && (
               <CreatePostForm
                 content={content}
@@ -265,6 +281,7 @@ const dashboard = () => {
               handleLike={handleLike}
               handleUnlike={handleUnlike}
               handleComment={handleComment}
+              removeComment={removeComment}
             />
             {/* {totalPosts} */}
             <Pagination

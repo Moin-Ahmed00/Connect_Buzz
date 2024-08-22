@@ -11,9 +11,9 @@ const PostPublic = ({ post, commentCount = 10 }) => {
   const [state] = useContext(UserContext);
   const router = useRouter();
 
-  useEffect(()=>{
-    post && post.postedBy
-  },[post && post.postedBy])
+  useEffect(() => {
+    post && post.postedBy;
+  }, [post && post.postedBy]);
 
   return (
     <div>
@@ -23,14 +23,20 @@ const PostPublic = ({ post, commentCount = 10 }) => {
             className="card border-success mb-3"
             style={{ maxWidth: "100%" }}
           >
-            <div className="card-header bg-transparent border-success d-flex align-items-center">
+            <div className="card-header bg-transparent border-success d-flex align-items-center col-12 gap-4">
               {/* <Avatar size={40}>{post.postedBy.name[0]}</Avatar> */}
               {<Avatar size={55} src={imageUrl(post.postedBy)} />}
-              <span className="m-3">{post.postedBy.name}</span>
-              <span>{moment(post.createdAt).fromNow()}</span>
+              <div className="text-center">
+                <span>{post.postedBy.name}</span>
+              </div>
+              <div className="text-center">
+                <span>{moment(post.createdAt).fromNow()}</span>
+              </div>
             </div>
-            <div className="card-body text-success">
-              {renderHTML(post.content)}
+            <div className="card-body">
+              {post && post.content.length > 0
+                ? renderHTML(post.content)
+                : renderHTML("This Post Doesn't Have Content...")}
             </div>
             <div className="card-footer bg-transparent border-success">
               <img
@@ -39,7 +45,7 @@ const PostPublic = ({ post, commentCount = 10 }) => {
                 alt={""}
               />
               <div className="row d-flex p-2">
-                <div className="col-6 p-0 d-flex gap-3">
+                <div className="col-12 p-0 d-flex gap-3">
                   {state &&
                   state.user &&
                   post.likes &&

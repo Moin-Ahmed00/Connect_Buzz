@@ -60,7 +60,7 @@ const Following = () => {
     }
   };
   return (
-    <div className="row col-6 offset-3 my-5 py-3 shadow">
+    <div className="container col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 offset-0 my-5 py-3 shadow">
       <List
         itemLayout="horizontal"
         dataSource={people}

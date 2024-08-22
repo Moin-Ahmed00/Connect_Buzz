@@ -82,7 +82,7 @@ const Search = () => {
               setQuery(e.target.value), setResult([]);
             }}
             type="search"
-            placeholder="Search"
+            placeholder="Search User On Connect Buzz"
             aria-label="Search"
           />
           <button className="btn btn-outline-secondary" type="submit">

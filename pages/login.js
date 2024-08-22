@@ -54,8 +54,8 @@ const login = () => {
         </div>
       </div>
 
-      <div className="row shadow-lg py-5">
-        <div className="col-6 offset-3 border shadow p-3">
+      <div className="row shadow-lg py-sm-5 py-3">
+        <div className="col-lg-6 offset-lg-3 rounded-3 col-md-8 offset-md-2 col-10 offset-1 shadow py-2">
           <AuthForm
             handleSubmit={handleSubmit}
             email={email}
@@ -65,16 +65,16 @@ const login = () => {
             loading={loading}
             page="login"
           />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col text-center">
-          Not Yet <Link href="/register">Registered</Link>
-        </div>
-        <div className="col text-center">
-          <Link className="text-danger" href="/forgot-password">
-            Forgot Password
-          </Link>
+          <div className="d-flex mt-3">
+            <div className="col text-center">
+              Not Yet <Link href="/register">Registered</Link>
+            </div>
+            <div className="col text-center">
+              <Link className="text-danger" href="/forgot-password">
+                Forgot Password
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

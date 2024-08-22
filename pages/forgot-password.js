@@ -58,13 +58,13 @@ const ForgotPassword = () => {
   return (
     <div className="container-fluid">
       <div className="row bg-default-image">
-        <div className="col d-flex align-items-center">
+        <div className="d-flex align-items-center">
           <h1 className="text-light">Forgot Password</h1>
         </div>
       </div>
 
       <div className="row shadow-lg py-5">
-        <div className="col-6 offset-3 border shadow p-3">
+        <div className="col-lg-6 offset-lg-3 rounded-3 col-md-8 offset-md-2 col-10 offset-1 shadow py-3">
           <ForgotPasswordForm
             handleSubmit={handleSubmit}
             email={email}
@@ -75,6 +75,9 @@ const ForgotPassword = () => {
             setSecret={setSecret}
             loading={loading}
           />
+          <div className="text-center pt-3">
+            Already a user <Link href="/login">login</Link>
+          </div>
         </div>
       </div>
       <div className="row">
@@ -90,11 +93,6 @@ const ForgotPassword = () => {
               Login
             </Link>
           </Modal>
-        </div>
-      </div>
-      <div className="row py-3">
-        <div className="col text-center">
-          Already a user <Link href="/login">login</Link>
         </div>
       </div>
     </div>

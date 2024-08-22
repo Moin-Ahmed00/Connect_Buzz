@@ -27,23 +27,29 @@ const Post = ({
             className="card border-primary mb-3"
             style={{ maxWidth: "100%" }}
           >
-            <div className="card-header bg-transparent border-primary d-flex align-items-center">
+            <div className="card-header bg-transparent border-primary d-flex align-items-center col-12 gap-3 gap-sm-4">
               {/* <Avatar size={40}>{post.postedBy.name[0]}</Avatar> */}
               {<Avatar size={50} src={imageUrl(post.postedBy)} />}
-              <span className="m-3">{post.postedBy.name}</span>
-              <span>{moment(post.createdAt).fromNow()}</span>
+              <div className="text-center">
+                <span>{post.postedBy.name}</span>
+              </div>
+              <div className="text-center">
+                <span>{moment(post.createdAt).fromNow()}</span>
+              </div>
             </div>
-            <div className="card-body text-success">
-              {renderHTML(post.content)}
+            <div className="card-body">
+              {post && post.content.length > 0
+                ? renderHTML(post.content)
+                : renderHTML("This Post Doesn't Have Content...")}
             </div>
-            <div className="card-footer bg-transparent border-success">
+            <div className="card-footer bg-transparent border-primary">
               <img
                 className="w-100 h-100"
                 src={post.image && post.image.url}
                 alt={""}
               />
               <div className="row d-flex p-2">
-                <div className="col-6 p-0 d-flex">
+                <div className="col-sm-6 col-12 p-0 d-flex justify-content-sm-start justify-content-evenly">
                   {state &&
                   state.user &&
                   post.likes &&
@@ -52,7 +58,7 @@ const Post = ({
                       onClick={() => {
                         handleUnlike(post._id);
                       }}
-                      className="btn bi bi-heart-fill text-danger d-flex gap-2 align-items-center"
+                      className="btn bi bi-heart-fill text-danger d-flex gap-md-2 gap-sm-1 gap-2 align-items-center"
                     >
                       {post.likes.length} Likes
                     </i>
@@ -61,39 +67,41 @@ const Post = ({
                       onClick={() => {
                         handleLike(post._id);
                       }}
-                      className="btn bi bi-heart d-flex gap-2 align-items-center"
+                      className="btn bi bi-heart d-flex gap-md-2 gap-sm-1 gap-2 align-items-center"
                     >
                       {post.likes.length} Likes
                     </i>
                   )}
-                  <i
-                    onClick={() => {
-                      handleComment(post);
-                    }}
-                    className="btn bi bi-chat-text d-flex gap-2 align-items-center text-danger"
-                  >
-                    {post.comments.length}
-                  </i>
-                  <Link
-                    className="text-decoration-none text-danger d-flex align-items-center text-center"
-                    href={`/post/${post._id}`}
-                  >
-                    Comments
-                  </Link>
+                  <div className="d-flex">
+                    <i
+                      onClick={() => {
+                        handleComment(post);
+                      }}
+                      className="btn bi bi-chat-text d-flex gap-md-2 gap-sm-1 gap-2 align-items-center text-danger"
+                    >
+                      {post.comments.length}
+                    </i>
+                    <Link
+                      className="text-decoration-none text-danger d-flex align-items-center text-center"
+                      href={`/post/${post._id}`}
+                    >
+                      Comments
+                    </Link>
+                  </div>
                 </div>
                 {state &&
                   state.user &&
                   state.user._id === post.postedBy._id && (
-                    <div className="col-6 p-0 d-flex justify-content-end">
+                    <div className="col-sm-6 col-12 p-0 d-flex justify-content-sm-end justify-content-evenly">
                       <i
                         onClick={() => router.push(`/user/post/${post._id}`)}
-                        className="btn bi bi-pencil-fill text-danger d-flex gap-2 align-items-center"
+                        className="btn bi bi-pencil-fill text-danger d-flex gap-md-2 gap-sm-1 gap-2 align-items-center"
                       >
                         Edit Post
                       </i>
                       <i
                         onClick={() => handleDelete(post)}
-                        className="btn bi bi-trash3-fill text-danger d-flex gap-2 align-items-center"
+                        className="btn bi bi-trash3-fill text-danger d-flex gap-md-2 gap-sm-1 gap-2 align-items-center"
                       >
                         Delete Post
                       </i>
@@ -107,34 +115,33 @@ const Post = ({
                   style={{ maxHeight: "155px", overflow: "scroll" }}
                 >
                   {post.comments.slice(0, commentCount).map((c) => (
-                    <li
-                      key={c._id}
-                      className="list-group-item d-flex justify-content-between align-items-start"
-                    >
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">
-                          <Avatar
-                            size={20}
-                            className="mb-2 me-3"
-                            src={imageUrl(c.postedBy)}
-                          />
-                          {c.postedBy.name}
+                    <li key={c._id} className="list-group-item">
+                      <div className="d-flex align-items-center">
+                        <div className="ms-2 me-auto">
+                          <div className="fw-bold">
+                            <Avatar
+                              size={20}
+                              className="mb-2 me-3"
+                              src={imageUrl(c.postedBy)}
+                            />
+                            {c.postedBy.name}
+                          </div>
                         </div>
-                        {c.text}
+                          <span className="d-flex align-items-center badge text-secondary">
+                            {moment(c.created).fromNow()}
+                            {state &&
+                              state.user &&
+                              state.user._id === c.postedBy._id && (
+                                <div className="d-flex justify-content-center">
+                                  <i
+                                    onClick={() => removeComment(post._id, c)}
+                                    className="btn bi bi-trash3-fill text-danger d-flex gap-2 align-items-center"
+                                  />
+                                </div>
+                              )}
+                          </span>
                       </div>
-                      <span className="badge text-secondary rounded-pill">
-                        {moment(c.created).fromNow()}
-                        {state &&
-                          state.user &&
-                          state.user._id === c.postedBy._id && (
-                            <div className="d-flex justify-content-center">
-                              <i
-                                onClick={() => removeComment(post._id, c)}
-                                className="btn bi bi-trash3-fill text-danger d-flex gap-2 align-items-center"
-                              />
-                            </div>
-                          )}
-                      </span>
+                      <div>{c.text}</div>
                     </li>
                   ))}
                 </ol>

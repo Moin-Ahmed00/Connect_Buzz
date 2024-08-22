@@ -84,6 +84,18 @@ const postComments = () => {
     }
   };
 
+  const handleDelete = async (post) => {
+    try {
+      const answer = window.confirm("Do you wanna delete this post...");
+      if (!answer) return;
+      const { data } = await axios.delete(`/delete-post/${post._id}`);
+      router.push("/user/dashboard")
+      toast.error("Post deleted successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="container-fluid">
       <div className="row bg-default-image">
@@ -91,7 +103,7 @@ const postComments = () => {
           <h1 className="text-light">Post</h1>
         </div>
       </div>
-      <div className="container col-8 offset-2 mt-4">
+      <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12 offset-0 mt-5">
         <Post
           post={post}
           commentCount={100}
@@ -99,6 +111,7 @@ const postComments = () => {
           handleLike={handleLike}
           handleUnlike={handleUnlike}
           handleComment={handleComment}
+          handleDelete={handleDelete}
         />
       </div>
       <Link className="text-decoration-none" href="/user/dashboard">

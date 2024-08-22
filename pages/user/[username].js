@@ -25,7 +25,7 @@ const Username = () => {
   const fetchUser = async () => {
     try {
       const { data } = await axios.get(`/user/${router.query.username}`);
-      console.log("The following lsit of user", data);
+      // console.log("The following lsit of user", data);
       setUser(data);
     } catch (error) {
       console.log(error);
@@ -41,9 +41,9 @@ const Username = () => {
   };
 
   return (
-    <div className="container d-flex pt-5 justify-content-center">
-      <div className="p-3">
-        <div className="card shadow" style={{ width: "40rem" }}>
+    <div className="container-fluid d-flex pt-5 justify-content-center">
+      <div className="col-md-8 offset-md-2 p-3">
+        <div className="card shadow col-md-8 offset-md-2" style={{ width: "40rem" }}>
           <img src={imageUrl(user)} className="card-img-top" alt={user.name} />
           <div className="card-body">
             <h5 className="card-title text-center">{user.name}</h5>

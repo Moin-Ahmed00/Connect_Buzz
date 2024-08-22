@@ -84,15 +84,15 @@ const index = ({ posts }) => {
         <h1 className="display-1 fw-bold text-center text-white pt-5">
           Connect Buzz
         </h1>
-        <div className="row px-5 py-5">
+        <div className="row px-md-5 px-sm-3 py-md-5 py-sm-3">
           {collection &&
             collection.map((post) => (
-              <div key={post._id} className="col-8 offset-2 shadow">
+              <div key={post._id} className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-sm-12  shadow-lg">
                 <Link
                   className="text-decoration-none"
-                  href={`/post/viewPost/${post._id}`}
+                  href={`/post/viewPost/${post._id}`}     
                 >
-                  <i className="bi bi-view-list h4 border-success mt-5 px-3 d-flex gap-2 align-items-center text-white">
+                  <i className="bi bi-view-list h4 border-success mt-md-5 mt-3 px-3 d-flex gap-2 align-items-center text-white">
                     View Post
                   </i>
                 </Link>

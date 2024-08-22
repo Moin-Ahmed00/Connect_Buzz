@@ -61,16 +61,28 @@ const Admin = () => {
           </div>
         </div>
         <div className="row py-5">
-          <div className="col-6 offset-3">
+          <div className="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
             {posts &&
               posts.map((post) => (
                 // console.log(post)
                 <div
-                  className="d-flex justify-content-between p-4 my-4 shadow"
+                  className="d-flex p-4 my-4 shadow"
                   key={post._id}
                 >
                   <div>
-                    PostedBy<b> {post.postedBy.name}</b> <br/> <br/>
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex align-items-center">
+                      PostedBy - <b>{post.postedBy.name}</b>
+                      </div>
+                      <span>
+                        <i
+                          onClick={() => {
+                            handleDelete(post);
+                          }}
+                          className="btn bi bi-trash text-danger"
+                        ></i>
+                      </span>
+                    </div>
                     {renderHTML(post.content)}
                     <img
                       src={imageURL(post)}
@@ -78,16 +90,6 @@ const Admin = () => {
                       width="100%"
                       heigth="100%"
                     ></img>
-                  </div>
-                  <div>
-                    <span>
-                      <i
-                        onClick={() => {
-                          handleDelete(post);
-                        }}
-                        className="btn bi bi-trash text-danger"
-                      ></i>
-                    </span>
                   </div>
                 </div>
               ))}

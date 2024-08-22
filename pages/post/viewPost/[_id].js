@@ -56,12 +56,12 @@ const SinglePost = ({ post }) => {
         <h1 className="display-1 fw-bold text-center text-white pt-5">
           Connect Buzz
         </h1>
-        <div className="row d-flex justify-content-center align-items-center px-5 py-5">
-          <div className="col-8">
+        <div className="row d-flex justify-content-center align-items-center px-md-5 px-sm-3 py-md-5 py-sm-3">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-sm-12 shadow-lg">
             <PostPublic key={post._id} post={post} />
           </div>
           <Link className="text-decoration-none" href="/">
-            <i className="bi bi-arrow-return-left justify-content-center d-flex h3 text-white"/>
+            <i className="bi bi-arrow-return-left justify-content-center d-flex h3 text-white" />
           </Link>
         </div>
       </div>

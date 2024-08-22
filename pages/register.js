@@ -60,7 +60,7 @@ const register = () => {
       </div>
 
       <div className="row shadow-lg py-5">
-        <div className="col-6 offset-3 border shadow p-3">
+        <div className="col-lg-6 offset-lg-3 rounded-3 col-md-8 offset-md-2 col-10 offset-1 shadow py-2">
           <AuthForm
             handleSubmit={handleSubmit}
             name={name}
@@ -73,6 +73,9 @@ const register = () => {
             setSecret={setSecret}
             loading={loading}
           />
+          <div className="text-center pt-3">
+            Already a user <Link href="/login">login</Link>
+          </div>
         </div>
       </div>
       <div className="row">
@@ -88,11 +91,6 @@ const register = () => {
               Login
             </Link>
           </Modal>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col text-center">
-          Already a user <Link href="/login">login</Link>
         </div>
       </div>
     </div>

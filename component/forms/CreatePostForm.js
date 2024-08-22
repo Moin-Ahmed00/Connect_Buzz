@@ -14,7 +14,7 @@ const CreatePostForm = ({
   uploading,
 }) => {
   return (
-    <div className="card">
+    <div className="card shadow">
       <div className="card-body">
         <form className="form-group">
           <ReactQuill
@@ -24,7 +24,7 @@ const CreatePostForm = ({
               setContent(e);
             }}
             className="form-control"
-            placeholder="write something over here. Always write with selecting either Bold, Italic or Underline for better text."
+            placeholder="Select Bold, Italic or Underline for better text."
           />
         </form>
       </div>

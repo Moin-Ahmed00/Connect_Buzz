@@ -95,7 +95,7 @@ const UpdateProfile = () => {
       </div>
 
       <div className="row shadow-lg py-5">
-        <div className="col-6 offset-3 border shadow p-3">
+        <div className="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12 shadow p-3">
           <label className="d-flex justify-content-center">
             {image && image.url ? (
               <Avatar size={55} src={image.url} className="m-1 shadow" />
